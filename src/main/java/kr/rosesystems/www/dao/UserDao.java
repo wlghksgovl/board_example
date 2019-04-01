@@ -8,10 +8,6 @@ import java.util.List;
 
 
 
-
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -54,61 +50,16 @@ public class UserDao implements IDao{
 
 	@Override
 	public User[] getAll(Paging paging) {
-//		List<User> list = jdbcTmp.query(getAll, new UserMapper());
-//
-//		User user[] = list.toArray(new User[0]);
-//		if(use == 0){
-//			return user;
-//		}
-//		
-//		int dPage = 0;
-//	
-//		if(pageNum == null){
-//			pageNum = "1";
-//		}
-//		int pageNo = Integer.parseInt(pageNum);
-//		int contentSize = jdbcTmp.queryForInt(count);
-//		System.out.println("contentSize = " +contentSize);
-//		int pageSize = 5;
-//		
-//		int endPage = (contentSize / pageSize) + 1;
-//		System.out.println(endPage);
-//		if((endPage % pageSize) == 0){
-//			endPage = endPage - 1;
-//		}
-//		if(pageNo > 1){
-//			pageNo = (pageNo - 1) * 5;
-//		}else{
-//			pageNo = 0;
-//		}
-//		
-//		
+
 		int totalCount = jdbcTmp.queryForInt(count);
-//		System.out.println(totalCount);
 		paging.setTotalCount(totalCount);
-//		System.out.println(paging.getPageNo());
 		
 		List<User> sList = jdbcTmp.query(page, new UserMapper(), paging.getViewPage(), paging.getPageSize());
 
 		return sList.toArray(new User[0]);
 	}
 	
-	@Override
-	public int lastP(int pageNum){
-		List<User> list = jdbcTmp.query(getAll, new UserMapper());
-		User user[] = list.toArray(new User[0]);
-		
-		int last = user.length;
-		
-		int endPage = (last / 5) + 1;
-		if((endPage % 5) == 0){
-			endPage = endPage - 1;
-		}
-		if(pageNum > 1){
-			pageNum = (pageNum - 1) * 5;
-		}
-		return endPage;
-	}
+
 
 	@Override
 	public User getContent(String u_num) {

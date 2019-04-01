@@ -1,7 +1,7 @@
 CREATE TABLE board(
 	u_num		INT		PRIMARY KEY AUTO_INCREMENT,
     u_name		CHAR(20)	NOT NULL,
-    u_pw		INT	 		NOT NULL,
+    u_pw		CHAR(20)	NOT NULL,
     u_contents	CHAR(200)	NOT NULL
 );
 DROP TABLE board;

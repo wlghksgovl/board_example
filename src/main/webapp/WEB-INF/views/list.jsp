@@ -30,15 +30,20 @@
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
-		<tr>
-			<td colspan="2">
-				<div class="paginate">
-	  		      <c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
-		               <a href="list?pageNum=${i}">${i}</a>
-		        </c:forEach>
-				</div>
-				</td>
-		</tr>
+		<c:choose>
+			<c:when test="${ empty list }"/>
+			<c:otherwise>
+				<tr>
+					<td colspan="2">
+						<div class="paginate">
+	  				      <c:forEach var="i" begin="1" end="${paging.endPageNo}" step="1">
+		        		       <a href="list?pageNum=${i}">${i}</a>
+				        </c:forEach>
+						</div>
+					</td>
+				</tr>
+			</c:otherwise>
+		</c:choose>
 		<tr>
 			<td colspan="2"><a href="addContent">게시물 추가</a></td>
 		</tr>
